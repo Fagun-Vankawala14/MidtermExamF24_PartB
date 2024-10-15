@@ -33,10 +33,23 @@ public class VendingMachineItem {
         }
     }
     
-    
+    public static boolean isAvailable(int itemIndex) {
+        return itemAvailability[itemIndex]; 
+    }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
+        
+        
+         System.out.print("Please select an item (1-4): ");
+        int selectedItem = sc.nextInt() - 1; 
+
+        
+        if (isAvailable(selectedItem)) {
+            System.out.println("You selected: " + candies[selectedItem] + " - $" + prices[selectedItem]);
+        } else {
+            System.out.println("Sorry, that item is out of stock.");
+        }
                 
 
       }
