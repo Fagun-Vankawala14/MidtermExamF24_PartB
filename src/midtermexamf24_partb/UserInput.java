@@ -14,6 +14,7 @@ import static midtermexamf24_partb.VendingMachineItem.itemAvailability;
 //It will also decrease coupling
 public class UserInput {
     public static void selectItem(){
+        System.out.println("Customer chose chocolate bar");
         String c="chocolate Bar";
         if(itemAvailability[0]==true)
                 {
