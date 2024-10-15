@@ -5,7 +5,9 @@
  */
 package midtermexamf24_partb;
 
-
+/*I am using encapsulation, also I am achieving cohesion since both classes focus on a specific task, every method in both classes are related  to each other.
+* I needed to do that because there was only one class , taking care of everything. On the other hand I kind of achieve a loose coupling since VendingMachineItem is
+* an independent class.*/
 
 public class VendingMachineItem {
     public enum Candies {
