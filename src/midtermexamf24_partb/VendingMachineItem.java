@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class VendingMachineItem {
     public double price;
     
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
-    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
-    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
+    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips", "Ice pops", "Tic Tac", "Gummies", "IceBreakers"};
+    public static double[] prices = {1.50, 1.20, 1.80, 2.00, 5.00, 3.00, 4.25, 2.50};
+    public static boolean[] itemAvailability = {true, true, true, true, true, true, true, true}; // Initially all items are available
     
     public VendingMachineItem() {
         // Constructor left blank intentionally
