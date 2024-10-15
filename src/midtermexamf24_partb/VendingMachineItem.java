@@ -2,21 +2,66 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+
+Name: Heet Chanchad
+ID: 991740248
+
+
  */
 package midtermexamf24_partb;
 
 import java.util.Scanner;
 
+
+// THis class only contains the data member definitions and making them private, this in turn encourages
+// high coupling as the components relate to the VendingMachine entity.
+
 public class VendingMachineItem {
-    public double price;
     
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
+    
+//    Here, I added the enum type instead of the string array to have high cohesion and 
+//    force it by the compiler so data from user is correct.
+    public enum CandyType {
+        chocolate_bar, sour_candy, soft_candy, potato_chips
+    }
+
+  
+    
     public static double[] prices = {1.50, 1.20, 1.80, 2.00};
     public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
     
+    private CandyType item;
+    private double price;
+    private boolean isAvailable;
+
     public VendingMachineItem() {
-        // Constructor left blank intentionally
     }
+    
+
+    public VendingMachineItem(CandyType item, double price, boolean isAvailable) {
+        this.item = item;
+        this.price = price;
+        this.isAvailable = isAvailable;
+    }
+
+    public CandyType getItem() {
+        return item;
+    }
+
+    public void setItem(CandyType item) {
+        this.item = item;
+    }
+
+    public boolean isIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+    
+    
+    
     
     public double getPrice() {
         return price;
@@ -26,39 +71,11 @@ public class VendingMachineItem {
         price = givenPrice;
     }
     
-    public static void displayMenu() {
-        System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
-        for (int i = 0; i < 4; i++) {
-            System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
-        }  
-    }
-    
-    public static void selectItem(int itemNo) {
-        
-        if(itemNo < 1 || itemNo > candies.length){
-            System.out.println("Choose a valid Item");
-            return;
-        }
-        
-        if(itemAvailability[itemNo-1]){
-            System.out.println("Your selection is: " + candies[itemNo-1] + ", Price = $" + prices[itemNo-1]);
-            itemAvailability[itemNo-1] = false;
-            System.out.println("THank you for the purchase!!");
-        } else {
-            System.out.println("Sorry, " + candies[itemNo-1] + " is not Available!!");
-        }
-    }
+//   Removed the main method and the functional methods and put them in a new class to have loose coupling, 
+//    and the data being less dependent on each other among both classes
     
     
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        displayMenu();
-        
-        System.out.print("Select any item:");
-        
-        int item = sc.nextInt();
-                
-        selectItem(item);
-
-      }
+    
+//    
+    
 }
