@@ -8,57 +8,104 @@ package midtermexamf24_partb;
 
 import java.util.Scanner;
 
-public class VendingMachineItem {
-    public double price;
-    
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
-    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
-    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
-    
-    public VendingMachineItem() {
-        // Constructor left blank intentionally
+// Abstract class representing a general Vending Machine Item
+abstract class Item {
+    // All the fields are encapsulation
+    private String name;
+    private double price;
+    private boolean isAvailable;
+
+    // Item is initialised using this constructor
+    public Item(String name, double price, boolean isAvailable) {
+        this.name = name;
+        this.price = price;
+        this.isAvailable = isAvailable;
     }
-    
+
+    // An abstract method is implemented to get the details of particular item
+    public abstract String getItemDetails();
+
+    // Get method for accessing the private field
+    public String getName() {
+        return name;
+    }
+
     public double getPrice() {
         return price;
     }
-    
-    public void setPrice(double givenPrice) {
-        price = givenPrice;
-    }
-    
-    public static void displayMenu() {
-        System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
-        for (int i = 0; i < 4; i++) {
-            System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
-        }
-    }
-    
-    
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        displayMenu();
-        selectItem();
-                
 
-      }
-     public static void selectItem() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the number of an item that you would like to get: ");
-        int itemNumber = sc.nextInt();
+    public boolean isAvailable() {
+        return isAvailable;
+    }
 
-        if (itemNumber < 1 || itemNumber > candies.length) {
-            System.out.println("Sorry, Invalid selection.");
-        } else {
-            int index = itemNumber - 1; 
-            
-            if (itemAvailability[index]) {
-                System.out.println("You have selected: " + candies[index] + " - $" + prices[index]);
-                System.out.println("Purchase Successful.");
-                itemAvailability[index] = false;
-            } else {
-                System.out.println("Sorry, " + candies[index] + " is out of stock.");
-            }
-        }
-     }
+    // Set method to update the value
+    public void setAvailable(boolean available) {
+        this.isAvailable = available;
+    }
 }
+
+
+class Candy extends Item {
+
+    public Candy(String name, double price, boolean isAvailable) {
+        super(name, price, isAvailable);
+    }
+
+    // Implementing the abstract method
+    @Override
+    public String getItemDetails() {
+        return getName() + " - $" + getPrice();
+    }
+}
+
+class VendingMachine {
+    private Item[] items;
+
+    // Constructor to initialize the vending machine
+    public VendingMachine() {
+        items = new Item[] {
+            new Candy("chocolate bar", 1.50, true),
+            new Candy("sour candy", 1.20, true),
+            new Candy("soft drink", 1.80, true),
+            new Candy("potato chips", 2.00, true)
+        };
+    }
+
+    // Display the menu of available items
+    public void displayMenu() {
+        System.out.println("Welcome to the vending machine, here is a list of the possible items:");
+        for (int i = 0; i < items.length; i++) {
+            String availability = items[i].isAvailable() ? "Available" : "Not Available";
+            System.out.println((i + 1) + ". " + items[i].getItemDetails() + " (" + availability + ")");
+        }
+    }
+
+    // Method to allow the user to select an item based on its availability
+    public void selectItem() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter an item number that you would like to get: ");
+        int choice = sc.nextInt() - 1;
+
+        if (choice >= 0 && choice < items.length) {
+            Item selectedItem = items[choice];
+
+            if (selectedItem.isAvailable()) {
+                System.out.println(selectedItem.getName() + " = $" + selectedItem.getPrice());
+                selectedItem.setAvailable(false); // Update availability after purchase
+             
+            } else {
+                System.out.println( selectedItem.getName() + " is not available.");
+            }
+        } else {
+            System.out.println("Invalid selection.");
+        }
+    }
+
+    public static void main(String[] args) {
+        VendingMachine vendingMachine = new VendingMachine();
+        vendingMachine.displayMenu();
+        vendingMachine.selectItem();
+    }
+}
+
+
