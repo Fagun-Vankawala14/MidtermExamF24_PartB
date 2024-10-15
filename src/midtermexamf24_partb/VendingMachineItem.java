@@ -7,7 +7,7 @@ package midtermexamf24_partb;
 
 
 public class VendingMachineItem {
-    
+    //High Cohesion -- this class completely responsible for vending machine items
     //private attributes for encapsulation
     
     private String name;
@@ -22,6 +22,8 @@ public class VendingMachineItem {
     }
 
     //Getter and Setters for Price, Item name, and ItemAvailability
+    
+    //avoid direct dependencies 
     public String getName() {
         return name;
     }

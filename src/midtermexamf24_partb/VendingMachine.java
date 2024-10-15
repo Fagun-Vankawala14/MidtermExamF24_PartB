@@ -9,14 +9,17 @@ package midtermexamf24_partb;
  * @author jazzuu
  */
 import java.util.Scanner;
+//High Cohesion as class only responsible for vending machine operations display and select items
+//Loose Coupling by sepearting classes for items in vending machine 
+
 public class VendingMachine {
     private VendingMachineItem[] items; 
     private Scanner sc;
-
+    //
     //In our main class we initialize the constructor for vending machine items
     public VendingMachine() 
     {
-        items = new VendingMachineItem[] 
+        items = new VendingMachineItem[] //flexible initailization
         {
             new VendingMachineItem("chocolate bar", 1.50, true),
             new VendingMachineItem("sour candy", 1.20, true), 
@@ -31,12 +34,12 @@ public class VendingMachine {
     
     public void displayMenu() {
         System.out.println("Welcome to the vending machine - Available Items:");
-        for (int i = 0; i < items.length; i++) 
+        for (int i = 0; i < items.length; i++) //loop to display items 
         {
             String availability;
             if(items[i].isItemAvailable())
             {
-                availability = "Avaiable";
+                availability = "Available";
             }
             
             else
@@ -64,7 +67,7 @@ public class VendingMachine {
             System.out.println("Invalid selection. Please choose a valid number (1-" + items.length + ").");
         }
     }
-
+    //single responsibility principle -- maintaining the code as each class has clear focus 
     //Method for Selection Item
     private void Selection(VendingMachineItem selectedItem) {
         
@@ -80,7 +83,7 @@ public class VendingMachine {
     }
 
     //main method to call displaymenu and selectitem methods
-    
+    //Abstraction -- manage items and selection hidden from user - User friendly interface
     public static void main(String[] args) {
         VendingMachine vending = new VendingMachine();  
         vending.displayMenu(); 
