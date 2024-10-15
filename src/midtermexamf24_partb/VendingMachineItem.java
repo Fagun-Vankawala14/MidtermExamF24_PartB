@@ -34,11 +34,37 @@ public class VendingMachineItem {
         }
     }
     
+    public static void selectItem(Scanner sc) {
+        System.out.print("\nEnter the number of the item you want to purchase: ");
+        int choice = sc.nextInt() - 1; // Adjusting for 0-based indexing
+
+        if (choice < 0 || choice >= candies.length) {
+            System.out.println("Invalid selection. Please try again.");
+            return;
+        }
+
+        if (itemAvailability[choice]) {
+            System.out.println("You selected: " + candies[choice] + ". Enjoy your snack!");
+            itemAvailability[choice] = false; // Mark the item as sold out
+        } else {
+            System.out.println("Sorry, " + candies[choice] + " is sold out. Please select another item.");
+        }
+    }
     
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        displayMenu();
-                
+         Scanner sc = new Scanner(System.in);
+        boolean continueShopping = true;
 
-      }
+        while (continueShopping) {
+            displayMenu();
+            selectItem(sc);
+
+            System.out.print("\nWould you like to buy another item? (yes/no): ");
+            String response = sc.next().trim().toLowerCase();
+            continueShopping = response.equals("yes");
+        }
+
+        System.out.println("Thank you for using the vending machine!");
+        sc.close();
+    }
 }
