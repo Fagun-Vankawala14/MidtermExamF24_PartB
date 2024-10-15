@@ -32,11 +32,31 @@ public class VendingMachineItem {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
     }
+    public static double selectItem(int lineNumber){
+        if(lineNumber < 1 || lineNumber > candies.length){
+          System.out.println("Invalid try.Choose a valid item number");
+          return -1;
+        }
+        if(!itemAvailability [lineNumber-1]){
+           System.out.println("Sorry " + candies[lineNumber -1] + "item is not availabile" );
+            return -1;
+        }
+        System.out.println("You have selected " + candies [lineNumber - 1 ]);
+        double price = prices[lineNumber -1];
+        
+        itemAvailability[lineNumber - 1] =false;
+        System.out.println("The price of your selected item is $"+ price);
+        return price;
+    }
     
     
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         displayMenu();
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Please select one of the item from following(1-4): ");
+        int item = sc.nextInt();
+        selectItem(item);
                 
 
       }
