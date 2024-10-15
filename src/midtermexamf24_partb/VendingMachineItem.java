@@ -20,10 +20,10 @@ public class VendingMachineItem {
     private static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
     
     
-    //Initializing the attributes by using Constructor
+    
     public VendingMachineItem() {
        
-       
+//       Constructor to initialize the attributes
     }
 
 //    *******OOP concept**********
