@@ -1,51 +1,59 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+1. Cohesion: To achieve high cohesion, (a) created a separate class Item to store item data and methods (name, price availability, getters and setters) and (b) retained vending machine methods in this class
+2. Coupling: To achieve loose coupling, limited the interactions between the existing classes to just necessary ones. Calls for Item class in this class is limited to addition, removal, and checking for availability.
  */
 package midtermexamf24_partb;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class VendingMachineItem {
-    public double price;
-    
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
-    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
-    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
+    private ArrayList<Item> items = new ArrayList<Item>();;
     
     public VendingMachineItem() {
-        // Constructor left blank intentionally
+        items.add(new Item("chocolate bar", 1.50, true));
+        items.add(new Item("sour candy", 1.20, true));
+        items.add(new Item("soft drink", 1.80, true));
+        items.add(new Item("potato chips", 2.00, true));
     }
     
-    public double getPrice() {
-        return price;
+    public void addItem(String name, Double price, Boolean available) {
+        items.add(new Item(name, price, available));
     }
     
-    public static boolean checkAvailability(String item) {
-        for (int i = 0; i < candies.length; i++) {
-            if (item.equals(candies[i])) {
-                return itemAvailability[i];
+    public void removeItem(String name) {
+        for (Item item : items) {
+            if (name.equals(item.getName())) {
+                items.remove(item);
+            }
+        }
+    }
+    
+    public boolean checkAvailability(String name) {
+        for (Item item : items) {
+            if (name.equals(item.getName())) {
+                return item.getAvailable();
             }
         }
         return false;
     }
-    public void setPrice(double givenPrice) {
-        price = givenPrice;
-    }
     
-    public static void displayMenu() {
+    public void displayMenu() {
+        int count = 1;
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
-        for (int i = 0; i < 4; i++) {
-            System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
+        for (Item item : items) {
+            System.out.println(String.format("%d. %s - %s", count, item.getName(), item.getPrice()));
+            count++;
         }
     }
     
     
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        displayMenu();
-        System.out.println(checkAvailability("sour candy"));
-
+        Scanner in = new Scanner(System.in);
+        VendingMachineItem v = new VendingMachineItem();
+        v.displayMenu();
+        System.out.print("Check if an item is available: ");
+        String item = in.nextLine();
+        System.out.println(v.checkAvailability(item) ? "Item is available." : "Item is not available.");
       }
 }
