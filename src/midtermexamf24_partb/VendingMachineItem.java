@@ -32,12 +32,24 @@ public class VendingMachineItem {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
     }
+    public static void selectItem(){
+            System.out.println("Please choose the candies after checking its availability:");
+            for (int i = 0; i < 4; i++) {
+                if(itemAvailability[i]==true)
+                {
+                    System.out.println((i+1) + ". " + candies[i]+" is available");
+                }
+                else{
+                    System.out.println("Sorry, " + candies[i]+" is not available");
+                }
+        }
+    }
     
-    
+    //Add new feature to selectItem by checking the availability. 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
-                
+        selectItem();       
 
       }
 }
