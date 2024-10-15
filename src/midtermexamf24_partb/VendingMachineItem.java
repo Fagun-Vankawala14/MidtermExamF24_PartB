@@ -27,17 +27,46 @@ public class VendingMachineItem {
     }
     
     public static void displayMenu() {
-        System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
+        System.out.println("Welcome to the vending machine, here is a list of the items:");
+        
         for (int i = 0; i < 4; i++) {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
+        
+            if (!itemAvailability[i]) {
+                System.out.println("Item is Unavailable.");
+            } 
+            else{
+                System.out.println();
+            }
         }
     }
     
+    public static void selectItem() {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Please select an item by entering the number (1-4): ");
+        int choice = sc.nextInt();
+        
+        if (choice < 1 || choice > 4) {
+            System.out.println("Invalid selection. Please choose a number between 1 and 4.");
+            return;
+        }
+        
+        int itemIndex = choice - 1; 
+
+        if (!itemAvailability[itemIndex]) {
+            System.out.println("Sorry, " + candies[itemIndex] + " is currently unavailable.");
+        } else {
+            System.out.println("You selected " + candies[itemIndex] + ". The price is $" + prices[itemIndex]);
+            itemAvailability[itemIndex] = false;
+        }
+    }
     
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+       
         displayMenu();
-                
+        selectItem();
 
       }
 }
