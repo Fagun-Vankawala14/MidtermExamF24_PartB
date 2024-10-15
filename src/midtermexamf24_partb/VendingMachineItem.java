@@ -32,11 +32,41 @@ public class VendingMachineItem {
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
         }
     }
+    public static void selectItem(){
+    
+                Scanner sc = new Scanner(System.in);
+                
+                System.out.println("Please choose your item (1-4) ");
+                 int choice = sc.nextInt();
+                 
+                 if(choice >=1 && choice <= 4)
+                 {
+                       int index = choice-1;
+                       if(itemAvailability[index])
+                 
+                 {
+                     
+                        System.out.println("Item Selected: "+candies[index] );
+                        System.out.println("Price: "+prices[index] );
+                 }
+                       else
+                       {
+                          System.out.println("Item Selected Currently Unavailable" );
+                      }
+                 }
+                 else
+                 
+                 {
+                     System.out.println("Kindly Select from Available Options: 1-4 " );
+                 }
+                
+    }
     
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
+        selectItem();
                 
 
       }
