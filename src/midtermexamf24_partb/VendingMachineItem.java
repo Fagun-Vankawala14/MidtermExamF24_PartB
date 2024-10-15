@@ -1,5 +1,6 @@
 /*
 991276249 Veronica Pereira
+1:05
  */
 package midtermexamf24_partb;
 
@@ -23,6 +24,17 @@ public class VendingMachineItem {
     public void setPrice(double givenPrice) {
         price = givenPrice;
     }
+    public static void selectItem(){ //prints out list of items, checking if avaliable if not, sending message unavaliable
+        System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
+    for (int i = 0; i < 4; i++) {
+        if (itemAvailability[i] == true){
+            System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);}
+        else {
+        System.out.println((i+1) + ". " + candies[i] + " is not avaliable");
+        }
+        
+        }
+    }
     
     public static void displayMenu() {
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
@@ -31,11 +43,11 @@ public class VendingMachineItem {
         }
     }
     
-    
+   
+  
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        displayMenu();
-                
+        selectItem();
 
       }
 }
