@@ -46,40 +46,7 @@ public class VendingMachineItem {
                     System.out.println("Sorry, " + candies[i]+" is not available");
                 }
         }
-    }
-    public static void selectItem(){
-        String c="chocolate Bar";
-        if(itemAvailability[0]==true)
-                {
-                    System.out.println("chocolate Bar is available. You can take it");
-                }
-                else{
-                    System.out.println("Sorry, chocolate Bar is unavailable. You can not take it");
-                } 
-//        Scanner in =new Scanner(System.in);
-//        System.out.println("The customer wants to take a chocolate candy");
-//        String candy= in.nextLine();
-//            if(candy=="chocolate Bar")
-//            {
-//                if(itemAvailability[0]==true)
-//                { 
-//                    return "chocolate Bar is available. You can purchase it.";
-//                }
-//                else{
-//                    return "chocolate Bar is  not available. You can not purchase it.";
-//                }
-//            }
-//            if(candy =="sour candy"){
-//                if(itemAvailability[1]==true)
-//                { 
-//                    return "sour candy is available. You can purchase it.";
-//                }
-//                else{
-//                     return "sour candy is not available. You can not purchase it.";
-//                }
-//            }
-//            return"sd";
-//    }
-//  
+    
+
 }
 }

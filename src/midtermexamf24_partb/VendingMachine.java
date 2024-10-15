@@ -6,7 +6,7 @@ package midtermexamf24_partb;
 
 import java.util.Scanner;
 import static midtermexamf24_partb.VendingMachineItem.displayMenu;
-import static midtermexamf24_partb.VendingMachineItem.selectItem;
+import static midtermexamf24_partb.UserInput.selectItem;
 
 /**
  *
@@ -20,7 +20,7 @@ public class VendingMachine {
      public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
-        Item();
+ 
         selectItem();       
 
       }
