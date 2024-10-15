@@ -8,57 +8,87 @@ package midtermexamf24_partb;
 import java.util.Scanner;
 
 public class VendingMachineItem {
-    public double price;
+    private double price; // Encapsulation: Price is private
     
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
-    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
-    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
-    
-    public VendingMachineItem() {
-        // Constructor left blank intentionally
+    private String name; // Encapsulation: Name of the item is encapsulated
+    private boolean isAvailable; // Encapsulation: Availability status is private
+
+    // Constructor to initialize the item
+    public VendingMachineItem(String name, double price) {
+        this.name = name;
+        this.price = price;
+        this.isAvailable = true; // Initially all items are available
     }
     
+    // Getters and setters for encapsulation
     public double getPrice() {
         return price;
     }
-    
-    public void setPrice(double givenPrice) {
-        price = givenPrice;
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
     
-    public static void displayMenu() {
+    // Method to display item information
+    public void displayItemInfo(int index) {
+        System.out.println((index + 1) + ". " + name + " - $" + price);
+    }
+    
+    // Method to select an item
+    public boolean selectItem() {
+        if (isAvailable) {
+            setAvailable(false); // Mark item as unavailable
+            return true; // Indicate successful selection
+        } 
+        return false; // Indicate item is unavailable
+    }
+
+    public static void displayMenu(VendingMachineItem[] items) {
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
-        for (int i = 0; i < candies.length; i++) {
-            System.out.println((i + 1) + ". " + candies[i] + " - $" + prices[i]);
+        for (int i = 0; i < items.length; i++) {
+            items[i].displayItemInfo(i);
         }
     }
     
-    public static void selectItem() {
+    public static void main(String[] args) {
+        VendingMachineItem[] items = {
+            new VendingMachineItem("chocolate bar", 1.50),
+            new VendingMachineItem("sour candy", 1.20),
+            new VendingMachineItem("soft drink", 1.80),
+            new VendingMachineItem("potato chips", 2.00)
+        };
+        
         Scanner sc = new Scanner(System.in);
-        System.out.print("Please enter the number of the items you want to select: ");
+        displayMenu(items);
+        selectItem(items);
+    }
+    
+    // Method to select an item from the vending machine
+    public static void selectItem(VendingMachineItem[] items) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Please enter the number of the item you want to select: ");
         int itemNumber = sc.nextInt();
 
-        if (itemNumber < 1 || itemNumber > candies.length) {
+        if (itemNumber < 1 || itemNumber > items.length) {
             System.out.println("Invalid selection. Please try again.");
             return;
         }
 
-        int index = itemNumber - 1; 
+        int index = itemNumber - 1; // Adjust for zero-based index
 
-        if (itemAvailability[index]) {
-            itemAvailability[index] = false; // Mark item as unavailable
-            System.out.println("You have selected: " + candies[index] + ". Please pay $" + prices[index]);
+        if (items[index].selectItem()) { // Check if item can be selected
+            System.out.println("You have selected: " + items[index].getName() + ". Please pay $" + items[index].getPrice());
         } else {
-            System.out.println("Sorry, " + candies[index] + " is currently unavailable.");
+            System.out.println("Sorry, " + items[index].getName() + " is currently unavailable.");
         }
     }
     
-    
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        displayMenu();
-        selectItem();
-                
-
-      }
 }
