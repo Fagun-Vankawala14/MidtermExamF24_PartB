@@ -22,6 +22,14 @@ public class VendingMachineItem {
         return price;
     }
     
+    public static boolean checkAvailability(String item) {
+        for (int i = 0; i < candies.length; i++) {
+            if (item.equals(candies[i])) {
+                return itemAvailability[i];
+            }
+        }
+        return false;
+    }
     public void setPrice(double givenPrice) {
         price = givenPrice;
     }
@@ -37,7 +45,7 @@ public class VendingMachineItem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         displayMenu();
-                
+        System.out.println(checkAvailability("sour candy"));
 
       }
 }
