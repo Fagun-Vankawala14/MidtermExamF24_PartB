@@ -6,7 +6,9 @@
 package midtermexamf24_partb;
 
 import java.util.Scanner;
-
+/*
+This class contains public fields for candies, prices and itemAvailability.
+Here all public so allows direct access but reduces encapsulation */
 public class VendingMachineItem {
     public double price;
     
@@ -33,6 +35,10 @@ public class VendingMachineItem {
         }
     }
     
+    /*
+    This method follows SRP because it handles only the item selection logic.
+    It ensures that display menu and item selection is handled separately.
+    */
     public static void selectItem(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the item number you want to buy:");
@@ -53,8 +59,8 @@ public class VendingMachineItem {
     
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        displayMenu();
-        selectItem();
+        displayMenu(); //Dispalay the menu
+        selectItem();  //Allows selection
                 
 
       }
