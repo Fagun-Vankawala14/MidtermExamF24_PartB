@@ -9,14 +9,47 @@ package midtermexamf24_partb;
 import java.util.Scanner;
 
 public class VendingMachineItem {
-    public double price;
     
-    public static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
-    public static double[] prices = {1.50, 1.20, 1.80, 2.00};
-    public static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
+//    *******OOP concept**********
+//    Encapsulation : making attributes private so that it can't be accessed directly outside the class.
     
+    private double price;
+    
+    private static String[] candies = {"chocolate bar", "sour candy", "soft drink", "potato chips"};
+    private static double[] prices = {1.50, 1.20, 1.80, 2.00};
+    private static boolean[] itemAvailability = {true, true, true, true}; // Initially all items are available
+    
+    
+    //Initializing the attributes by using Constructor
     public VendingMachineItem() {
-        // Constructor left blank intentionally
+       
+       
+    }
+
+//    *******OOP concept**********
+//    Encapsulation : created getters and setters to access the properties outside of the class.
+    public static String[] getCandies() {
+        return candies;
+    }
+
+    public static void setCandies(String[] candies) {
+        VendingMachineItem.candies = candies;
+    }
+
+    public static double[] getPrices() {
+        return prices;
+    }
+
+    public static void setPrices(double[] prices) {
+        VendingMachineItem.prices = prices;
+    }
+
+    public static boolean[] getItemAvailability() {
+        return itemAvailability;
+    }
+
+    public static void setItemAvailability(boolean[] itemAvailability) {
+        VendingMachineItem.itemAvailability = itemAvailability;
     }
     
     public double getPrice() {
@@ -34,6 +67,8 @@ public class VendingMachineItem {
         }
     }
     
+//    *******OOP concept**********
+//    Created a static method to select the items 
     public static void selectItem(Scanner sc) {
         System.out.print("\nEnter the number of the item you want to purchase: ");
         int choice = sc.nextInt() - 1; // Adjusting for 0-based indexing
@@ -52,7 +87,10 @@ public class VendingMachineItem {
     }
     
     public static void main(String[] args) {
-         Scanner sc = new Scanner(System.in);
+//         *******OOP concept**********
+//  Cohesion/ Single Responsibility Principle : The VendingMachine class is only responsible for vending machine operations
+//(like displaying the menu and selecting items).
+        Scanner sc = new Scanner(System.in);
         boolean continueShopping = true;
 
         while (continueShopping) {
