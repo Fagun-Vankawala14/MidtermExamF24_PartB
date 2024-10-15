@@ -29,14 +29,34 @@ public class VendingMachineItem {
     public static void displayMenu() {
         System.out.println("Welcome to the vending machine, here is a list of the possible candies:");
         for (int i = 0; i < 4; i++) {
+            if(itemAvailability[i]=true){
             System.out.println((i+1) + ". " + candies[i] + " - $" + prices[i]);
+            }
+            else{
+            System.out.println(candies[i]+" : is not avaiable at the moment.");}
         }
+        
+    }
+    public static void selectItem(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter your selection\n press 1 for Chocolate Bar\nPress 2 for Sour Candy\nPress 3 for Soft Drink\nPress 4 for Potato Chips");
+        String input = scanner.nextLine();
+        int Selection = Integer.parseInt(input);
+        if(itemAvailability[Selection]=false){
+        System.out.println("Your Selected Item Is Out Of Stock Please Try Again");
+        selectItem();
+        }
+        else{
+        System.out.println("Your Selected Item Is : "+candies[Selection]);
+        }
+        
     }
     
     
+    
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         displayMenu();
+        selectItem();
                 
 
       }
