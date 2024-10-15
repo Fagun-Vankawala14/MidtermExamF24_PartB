@@ -11,14 +11,14 @@ public class VendingMachineItem {
     private ArrayList<Item> items = new ArrayList<Item>();;
     
     public VendingMachineItem() {
-        items.add(new Item("chocolate bar", 1.50, true));
-        items.add(new Item("sour candy", 1.20, true));
-        items.add(new Item("soft drink", 1.80, true));
-        items.add(new Item("potato chips", 2.00, true));
+        items.add(new Item("chocolate bar", 1.50, 1));
+        items.add(new Item("sour candy", 1.20, 1));
+        items.add(new Item("soft drink", 1.80, 1));
+        items.add(new Item("potato chips", 2.00, 1));
     }
     
-    public void addItem(String name, Double price, Boolean available) {
-        items.add(new Item(name, price, available));
+    public void addItem(String name, Double price, Integer quantity) {
+        items.add(new Item(name, price, quantity));
     }
     
     public void removeItem(String name) {
@@ -32,7 +32,7 @@ public class VendingMachineItem {
     public boolean checkAvailability(String name) {
         for (Item item : items) {
             if (name.equals(item.getName())) {
-                return item.getAvailable();
+                return (item.getQuantity() > 0 ? true : false);
             }
         }
         return false;
@@ -46,6 +46,18 @@ public class VendingMachineItem {
             count++;
         }
     }
+    public void buyItem(String name) {
+        for (Item item: items) {
+            if (name.equals("no")) {
+                System.out.println("No transaction performed.");
+                break;
+            }
+            if (name.equals(item.getName())) {
+                item.setQuantity(item.getQuantity() - 1);
+                System.out.println("Item dispensed.");
+            }
+        }
+    }
     
     
     public static void main(String[] args) {
@@ -55,5 +67,12 @@ public class VendingMachineItem {
         System.out.print("Check if an item is available: ");
         String item = in.nextLine();
         System.out.println(v.checkAvailability(item) ? "Item is available." : "Item is not available.");
+        System.out.print("Buy something? Enter no to skip: ");
+        String inp = in.nextLine();
+        v.buyItem(inp);
+        System.out.print("Check if an item is available: ");
+        item = in.nextLine();
+        System.out.println(v.checkAvailability(item) ? "Item is available." : "Item is not available.");
+        
       }
 }

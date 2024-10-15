@@ -11,12 +11,12 @@ package midtermexamf24_partb;
 public class Item {
     private String name;
     private Double price;
-    private Boolean available;
+    private Integer quantity;
     
-    public Item(String name, Double price, Boolean available) {
+    public Item(String name, Double price, Integer quantity) {
         this.name = name;
         this.price = price;
-        this.available = available;
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -35,12 +35,12 @@ public class Item {
         this.price = price;
     }
 
-    public Boolean getAvailable() {
-        return available;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setAvailable(Boolean available) {
-        this.available = available;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
     
 }
