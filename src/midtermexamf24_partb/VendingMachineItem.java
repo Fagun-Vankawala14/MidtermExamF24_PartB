@@ -69,6 +69,7 @@ public class VendingMachineItem {
     
 //    *******OOP concept**********
 //    Created a static method to select the items 
+    
     public static void selectItem(Scanner sc) {
         System.out.print("\nEnter the number of the item you want to purchase: ");
         int choice = sc.nextInt() - 1; // Adjusting for 0-based indexing
