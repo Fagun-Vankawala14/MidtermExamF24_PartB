@@ -64,6 +64,6 @@ public class VendingMachineItem {
         System.out.println(message);
     }
 }
-//How i use 2 oo principles here
+//How i used 2 oo principles here
 //Cohesion :  I terms of cohesion i had high cohesion. I divided methods into several new methods such that each methods focuses on only 1 task thus the code becomes mpre understandable and easy to debug. For example checkAvaialblity one of the new methods that i made because earlier checkavailability was being done in only one method which becomes harder to debug thus i made a complete new method that will be called whenever i need it.
 //Coupling : In terms of coupling i kept the methods loosely coupled or almost independent of each none of the method is dependent on each other such that the program may fail. Thus all the methods in this are loosely couple, they are almost independant of each other each method can be modified independantly for example if the logic for checking availability changes, it won’t affect the selectItem() method directly.
