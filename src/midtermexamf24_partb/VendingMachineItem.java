@@ -39,13 +39,12 @@ public class VendingMachineItem {
         displayMenu();
         
         System.out.println("Please enter the number of the item you want to select: ");
-        int selectedItem = sc.nextInt() - 1; // user input for selecting an item (adjusted for 0-indexing)
-
-        // Check item availability
+        int selectedItem = sc.nextInt() - 1;
+        
+        
         if (itemAvailability[selectedItem]) {
             System.out.println("You selected: " + candies[selectedItem] + " - Price: $" + prices[selectedItem]);
-            // Perform other operations like deducting the price or updating inventory
-            itemAvailability[selectedItem] = false; // Mark item as unavailable after selection
+            itemAvailability[selectedItem] = false;
         } else {
             System.out.println("Sorry, the selected item is out of stock.");
         }
